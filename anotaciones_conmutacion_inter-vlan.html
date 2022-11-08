@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>anotaciones_conmutacion_inter-vlan</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1>Routing entre VLAN con router-on-a-stick</h1>
+<hr />
+<p>Volver al <a href="index.html">artículo principal</a></p>
+<h2>Configuración para el switch que este conectado al router</h2>
+<p>Para poder crear una inter-VLAN con router-on-a-stick se necesita seguir estos pasos:  
+</p>
+<ol>
+<li>
+<p><strong>Crear y nombrar las VLAN.</strong>  
+</p>
+<blockquote>
+<ol>
+<li>
+<p><strong>Entramos a la configuración global</strong>  
+</p>
+<pre><code>    config t  
+</code></pre>
+
+</li>
+<li>
+<p><strong>Introducimos a la sección VLAN junto al número que deseamos crear</strong>  
+</p>
+<pre><code>    vlan *vlan id*
+</code></pre>
+
+</li>
+<li>
+<p><strong>Le colocamos un nombre a la VLAN, esto para identificarlo nosotros.</strong>  
+</p>
+<pre><code>    name *nombre vlan*  
+</code></pre>
+
+</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p><strong>Crear la interfaz de administración.</strong><br />
+A continuación, se crea la interfaz de administración en VLAN 99 junto con el default gateway de R1.<br />
+*Cabe resaltar que esta configuración se necesita hacer al switch que este conectado al router, en este caso podría ser el S1.</p>
+<blockquote>
+<ol>
+<li>
+<p><strong>Entramos a la configuración global</strong>  
+</p>
+<pre><code>    config t  
+</code></pre>
+
+</li>
+<li>
+<p><strong>Introducimos a la interfaz vlan 99</strong> (este número puede variar, pero por convención se usa el 99)  
+</p>
+<pre><code>    interface vlan 99
+</code></pre>
+
+</li>
+<li>
+<p><strong>Añadimos la ip que va a tener dicha VLAN.</strong>  
+</p>
+<pre><code>    ip add 192.168.99.2 255.255.255.0  
+</code></pre>
+
+</li>
+<li>
+<p><strong>Prendemos dicho puerto</strong>  
+</p>
+<pre><code>    no shutdown  
+</code></pre>
+
+</li>
+<li>
+<p><strong>Nos salimos de la interfaz</strong>  
+</p>
+<pre><code>    exit  
+</code></pre>
+
+</li>
+<li>
+<p><strong>Y colocamos la ip de puerta de enlace predeterminada</strong>  
+</p>
+<pre><code>    ip default-gateway 192.168.99.1  
+</code></pre>
+
+</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p><strong>Configurar puertos de acceso</strong> (se tiene que colocar los puertos necesarios en su respectiva VLAN)  
+</p>
+<blockquote>
+<ol>
+<li>
+<p><strong>Entramos a la configuración global</strong>  
+</p>
+<pre><code>    config t  
+</code></pre>
+
+</li>
+<li>
+<p><strong>Introducimos a la interfaz del puerto que deseamos colocarle</strong> (este podria ser con rango o una por una)  
+</p>
+<pre><code>    interface fa0/6
+</code></pre>
+
+</li>
+<li>
+<p><strong>Dentro del puerto configuramos el puerto de acceso en la VLAN necesaria, en este caso la 10</strong>  
+</p>
+<pre><code>    switchport mode access
+    switchport access vlan 10
+</code></pre>
+
+</li>
+<li>
+<p><strong>Prendemos dicho puerto</strong>  
+</p>
+<pre><code>    no shutdown  
+</code></pre>
+
+</li>
+<li>
+<p><strong>Nos salimos de la interfaz</strong>  
+</p>
+<pre><code>    exit  
+</code></pre>
+
+</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<strong>Configurar puertos de enlace troncal.</strong>  
+
+<blockquote>
+<ol>
+<li>
+<p><strong>Entramos a la configuración global</strong>  
+</p>
+<pre><code>    config t  
+</code></pre>
+
+</li>
+<li>
+<p><strong>Nos colocamos en la interfaz del puerto que deseamos colocarle el troncal</strong> (este primero es para el que esta conectado al otro switch)  
+</p>
+<pre><code>    interface fa0/1
+</code></pre>
+
+</li>
+<li>
+<p><strong>Ahora si habilitamos el modo troncal en el puerto, lo activamos y nos salimos</strong>  
+</p>
+<pre><code>    switchport mode trunk
+    no shutdown
+    exit
+</code></pre>
+
+</li>
+<li>
+<strong>Este mismo proceso lo hacemos para el puerto que este conectado el router</strong>  
+
+<blockquote>
+<p>Nos introducimos en el puerto que este conectado, activamos el modo de truncamiento, lo prendemos y nos salimos.  
+</p>
+<pre><code>        interface fa0/5
+        switchport mode trunk
+        no shutdown
+        exit  
+</code></pre>
+
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h2>Configuración para los otros switches</h2>
+<p>Ahora con los otros switches que se tenga, la configuración es muy similar.  
+</p>
+<p><strong>Nota</strong>: Estas configuraciones siempre se necesita entrar en el modo de configuracion global.  
+</p>
+<ol>
+<li>
+<p><strong>Se crean las VLAN necesarias y la VLAN que funciona como troncal</strong> (es común usar la 99)  
+</p>
+<pre><code>        vlan *vlan id*
+        name *nombre VLAN*
+</code></pre>
+
+</li>
+<li>
+<p><strong>Se coloca en la VLAN 99 la ip que tendrá dicho puerto</strong>  
+</p>
+<pre><code>        interface vlan 99
+        ip add 192.168.99.3 255.255.255.0
+        no shutdown
+        exit
+</code></pre>
+
+</li>
+<li>
+<p><strong>Se introduce la ip de puerta de enlace predeterminada de dicha VLAN</strong>  
+</p>
+<pre><code>        ip default-gateway 192.168.99.1
+</code></pre>
+
+</li>
+<li>
+<p><strong>Con la ip's introducidas, ahora se necesita meter a los puertos conectados con su respectiva VLAN</strong> (esto puede hacerse con rangos si es posible)  
+</p>
+<pre><code>        interface fa0/18
+        switchport mode access
+        switchport access vlan 20
+        no shut
+        exit
+</code></pre>
+
+</li>
+<li>
+<p><strong>Ahora por último se configura el enlace troncal en el puerto(s) que este conectado al switch(es)</strong>  
+</p>
+<pre><code>        interface fa0/1
+        switchport mode trunk
+        no shutdown
+        end
+</code></pre>
+
+</li>
+</ol>
+<h2>Configuración de subinterfaces para el router proporcionado</h2>
+<ol>
+<li>
+<p><strong>Se coloca en la interfaz que es conectado al switch con respecto a la VLAN a tratar</strong><br />
+Para realizar esto es necesario agregarle un &quot;.&quot; seguido de un numero por ejemplo 10 es decir &quot;.10&quot;  
+</p>
+<pre><code>        interface G0/0/1.*vlan id*
+        interface G0/0/1.10
+</code></pre>
+
+</li>
+<li>
+<p><strong>Ahora para cuestiones de practicidad se le debe colocar una descripción, mencionando que ip de enlace predeterminada esta aludiendo dicha subinterfaz.</strong>  
+</p>
+<pre><code>        description Default Gateway for VLAN 10
+</code></pre>
+
+</li>
+<li>
+<p><strong>Con esto ahora si colocamos la respuesta al troncal de la VLAN necesaria</strong> (en esta caso la 10)  
+</p>
+<pre><code>        encapsulation dot1Q *vlan id*
+        encapsulation dot1Q 10
+</code></pre>
+
+</li>
+<li>
+<p><strong>Por último agregamos la ip que debe ser la puerta de enlace predeterminada de la VLAN</strong>  
+</p>
+<pre><code>        ip add 192.168.10.1 255.255.255.0
+        exit
+</code></pre>
+
+</li>
+<li>
+<p><strong>Este paso lo tiene que repetir con todas las VLAN que se tenga en los switches, incluyendo a l VLAN nativa 99</strong></p>
+<pre><code>        interface G0/0/1.99
+        description Default Gateway for VLAN 99
+        encapsulation dot1Q 99
+        ip add 192.168.99.1 255.255.255.0
+        exit
+</code></pre>
+
+</li>
+<li>
+<p><strong>Cuando tenga creada todas las subinterfaces ahora solo queda colocarse en el puerto físico, darle una descripción y activarlo.</strong> (al activarlo, activará todas las subinterfaces)  
+</p>
+<pre><code>        interface G0/0/1
+        description Trunk Link to S1
+        no shutdown
+        end
+</code></pre>
+
+</li>
+</ol>
+<p>Con esto ya tendrá listo el router-on-a-stick configurado, realice pruebas de ping para ver si lo hizo correctamente.</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
