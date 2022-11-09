@@ -3,7 +3,6 @@
 <head>
 <title>anotaciones_conmutacion_inter-vlan</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style type="text/css">
 /* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
 /* Author: Nicolas Hery - http://nicolashery.com */
@@ -296,8 +295,7 @@ img {
 <hr />
 <p>Volver al <a href="index.html">artículo principal</a></p>
 <h2>Configuración para el switch que este conectado al router</h2>
-<p>Para poder crear una inter-VLAN con router-on-a-stick se necesita seguir estos pasos:  
-</p>
+<p>Para poder crear una inter-VLAN con router-on-a-stick se necesita seguir estos pasos:  </p>
 <ol>
 <li>
 <p><strong>Crear y nombrar las VLAN.</strong>  
@@ -470,10 +468,8 @@ A continuación, se crea la interfaz de administración en VLAN 99 junto con el 
 </li>
 </ol>
 <h2>Configuración para los otros switches</h2>
-<p>Ahora con los otros switches que se tenga, la configuración es muy similar.  
-</p>
-<p><strong>Nota</strong>: Estas configuraciones siempre se necesita entrar en el modo de configuracion global.  
-</p>
+<p>Ahora con los otros switches que se tenga, la configuración es muy similar.  </p>
+<p><strong>Nota</strong>: Estas configuraciones siempre se necesita entrar en el modo de configuracion global.  </p>
 <ol>
 <li>
 <p><strong>Se crean las VLAN necesarias y la VLAN que funciona como troncal</strong> (es común usar la 99)  
@@ -565,6 +561,13 @@ Para realizar esto es necesario agregarle un &quot;.&quot; seguido de un numero 
         exit
 </code></pre>
 
+<blockquote>
+<p><strong>Cuando se esta configurando la nativa esta se coloca la palabra native antes de colocar el id de la VLAN es decir</strong>  
+</p>
+<pre><code>        encapsulation dot1Q native 99  
+</code></pre>
+
+</blockquote>
 </li>
 <li>
 <p><strong>Cuando tenga creada todas las subinterfaces ahora solo queda colocarse en el puerto físico, darle una descripción y activarlo.</strong> (al activarlo, activará todas las subinterfaces)  
